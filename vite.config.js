@@ -10,4 +10,15 @@ export default defineConfig({
         }),
         react(),
     ],
+    build: {
+        outDir: 'public/build',
+        rollupOptions: {
+            input: 'resources/js/app.jsx',
+        },
+    },
+    server: {
+        hmr: {
+            host: 'localhost',
+        },
+    },
 }); 
