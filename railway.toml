@@ -1,9 +1,0 @@
-[build]
-builder = "nixpacks"
-
-[deploy]
-startCommand = "bash deploy.sh"
-healthcheckPath = "/health"
-healthcheckTimeout = 900
-restartPolicyType = "on_failure"
-restartPolicyMaxRetries = 10 
