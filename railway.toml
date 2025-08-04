@@ -4,9 +4,6 @@ builder = "nixpacks"
 [deploy]
 startCommand = "php artisan serve --host=0.0.0.0 --port=$PORT"
 healthcheckPath = "/"
-healthcheckTimeout = 300
+healthcheckTimeout = 600
 restartPolicyType = "on_failure"
-restartPolicyMaxRetries = 10
-
-[build.steps]
-build = "npm install && npm run build" 
+restartPolicyMaxRetries = 10 
