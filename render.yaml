@@ -1,7 +1,7 @@
 services:
   - type: web
     name: inventory-management
-    env: php
+    runtime: php
     plan: starter
     buildCommand: |
       composer install --no-dev --optimize-autoloader
@@ -48,7 +48,7 @@ services:
       - key: DB_USERNAME
         fromDatabase:
           name: inventory-db
-          property: username
+          property: user
       - key: DB_PASSWORD
         fromDatabase:
           name: inventory-db
