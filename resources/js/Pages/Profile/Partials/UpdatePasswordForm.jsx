@@ -23,7 +23,7 @@ export default function UpdatePasswordForm({ className = '' }) {
 
         // Test if toast is available
         if (typeof toast === 'undefined') {
-            console.error('Toast function is not available!');
+            // Toast function is not available!
             alert('Toast not available - this is a fallback');
             return;
         }
@@ -32,11 +32,11 @@ export default function UpdatePasswordForm({ className = '' }) {
             preserveScroll: true,
             onSuccess: () => {
                 reset();
-                console.log('Password updated successfully, showing toast...');
+                // Password updated successfully, showing toast...
                 toast.success('Password updated successfully!');
             },
             onError: (errors) => {
-                console.log('Password update failed:', errors);
+                // Password update failed
                 if (errors.password) {
                     reset('password', 'password_confirmation');
                     passwordInput.current.focus();
@@ -46,7 +46,7 @@ export default function UpdatePasswordForm({ className = '' }) {
                     reset('current_password');
                     currentPasswordInput.current.focus();
                 }
-                
+
                 toast.error('Failed to update password. Please check your current password and try again.');
             },
         });

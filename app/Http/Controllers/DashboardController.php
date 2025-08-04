@@ -28,35 +28,35 @@ class DashboardController extends Controller
         
         // Validate stock calculations
         if ($calculatedTotal !== $totalItems) {
-            \Log::error("Stock calculation mismatch: Total=$totalItems, Calculated=$calculatedTotal");
+            // Stock calculation mismatch: Total=$totalItems, Calculated=$calculatedTotal
             // Use calculated total to ensure consistency
             $totalItems = $calculatedTotal;
         }
         
         // Validate data integrity
         if ($totalItems < 0) {
-            \Log::error("Invalid total items count: $totalItems");
+            // Invalid total items count: $totalItems
             $totalItems = 0;
         }
         
         if ($readyStockItems < 0) {
-            \Log::error("Invalid ready stock count: $readyStockItems");
+            // Invalid ready stock count: $readyStockItems
             $readyStockItems = 0;
         }
         
         if ($lowStockItems < 0) {
-            \Log::error("Invalid low stock count: $lowStockItems");
+            // Invalid low stock count: $lowStockItems
             $lowStockItems = 0;
         }
         
         if ($outOfStockItems < 0) {
-            \Log::error("Invalid out of stock count: $outOfStockItems");
+            // Invalid out of stock count: $outOfStockItems
             $outOfStockItems = 0;
         }
         
         // Validate cost calculation
         if ($totalCost < 0) {
-            \Log::error("Invalid total cost: $totalCost");
+            // Invalid total cost: $totalCost
             $totalCost = 0;
         }
 
@@ -79,12 +79,12 @@ class DashboardController extends Controller
                 
                 // Validate item data
                 if (empty($item->item_id)) {
-                    \Log::warning("Item missing item_id: {$item->id}");
+                    // Item missing item_id: {$item->id}
                     $item->item_id = 'Unknown';
                 }
                 
                 if ($item->quantity < 0) {
-                    \Log::warning("Item with negative quantity: {$item->item_id} = {$item->quantity}");
+                    // Item with negative quantity: {$item->item_id} = {$item->quantity}
                     $item->quantity = 0;
                 }
                 
@@ -145,9 +145,9 @@ class DashboardController extends Controller
             ->get();
         
         // Validate and log alert data
-        \Log::info('Low stock items count: ' . $lowStockAlerts->count());
+        // Low stock items count: ' . $lowStockAlerts->count()
         if ($lowStockAlerts->count() > 0) {
-            \Log::info('Low stock items:', $lowStockAlerts->toArray());
+            // Low stock items: ' . $lowStockAlerts->toArray()
         }
 
         // Out of Stock Alerts
@@ -160,7 +160,7 @@ class DashboardController extends Controller
         // Validate alert data integrity
         $lowStockAlerts = $lowStockAlerts->filter(function ($item) {
             if ($item->quantity < 1 || $item->quantity > 10) {
-                \Log::warning("Invalid low stock item: {$item->item_id} with quantity {$item->quantity}");
+                // Invalid low stock item: {$item->item_id} with quantity {$item->quantity}
                 return false;
             }
             return true;
@@ -168,16 +168,16 @@ class DashboardController extends Controller
         
         $outOfStockAlerts = $outOfStockAlerts->filter(function ($item) {
             if ($item->quantity !== 0) {
-                \Log::warning("Invalid out of stock item: {$item->item_id} with quantity {$item->quantity}");
+                // Invalid out of stock item: {$item->item_id} with quantity {$item->quantity}
                 return false;
             }
             return true;
         });
         
         // Log out of stock items count
-        \Log::info('Out of stock items count: ' . $outOfStockAlerts->count());
+        // Out of stock items count: ' . $outOfStockAlerts->count()
         if ($outOfStockAlerts->count() > 0) {
-            \Log::info('Out of stock items:', $outOfStockAlerts->toArray());
+            // Out of stock items: ' . $outOfStockAlerts->toArray()
         }
 
         return Inertia::render('Dashboard', [

@@ -90,7 +90,7 @@ class StockController extends Controller
         $item->update(['quantity' => $newQuantity]);
 
         // Log the transaction for debugging
-        \Log::info("Stock IN: Item {$item->name} (ID: {$item->id}) - Old: {$oldQuantity}, Added: {$request->quantity}, New: {$newQuantity}, Batch: {$batchNumber}");
+        // Stock IN: Item {$item->name} (ID: {$item->id}) - Old: {$oldQuantity}, Added: {$request->quantity}, New: {$newQuantity}, Batch: {$batchNumber}
 
         return redirect()->route('stock.index')->with('success', 'Stock in recorded successfully!');
     }
@@ -154,7 +154,7 @@ class StockController extends Controller
         $item->update(['quantity' => $newQuantity]);
 
         // Log the transaction for debugging
-        \Log::info("Stock OUT: Item {$item->name} (ID: {$item->id}) - Old: {$oldQuantity}, Removed: {$request->quantity}, New: {$newQuantity}");
+        // Stock OUT: Item {$item->name} (ID: {$item->id}) - Old: {$oldQuantity}, Removed: {$request->quantity}, New: {$newQuantity}
 
         return redirect()->route('stock.index')->with('success', 'Stock out recorded successfully!');
     }

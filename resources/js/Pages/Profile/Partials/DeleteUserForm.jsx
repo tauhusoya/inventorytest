@@ -33,7 +33,7 @@ export default function DeleteUserForm({ className = '' }) {
 
         // Test if toast is available
         if (typeof toast === 'undefined') {
-            console.error('Toast function is not available!');
+            // Toast function is not available!
             alert('Toast not available - this is a fallback');
             return;
         }
@@ -41,12 +41,12 @@ export default function DeleteUserForm({ className = '' }) {
         destroy(route('profile.destroy'), {
             preserveScroll: true,
             onSuccess: () => {
-                console.log('Account deactivated successfully, showing toast...');
+                // Account deactivated successfully, showing toast...
                 closeModal();
                 toast.success('Account deactivated successfully!');
             },
             onError: (errors) => {
-                console.log('Account deactivation failed:', errors);
+                // Account deactivation failed
                 passwordInput.current.focus();
                 toast.error('Failed to deactivate account. Please check your password.');
             },

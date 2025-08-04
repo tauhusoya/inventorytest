@@ -30,7 +30,7 @@ export default function Index({ users, inactiveUsers, reactivationRequests, acti
     };
 
     // Debug logging
-    console.log('Users Index Component Rendered', { users, auth });
+    // Users Index Component Rendered
 
     const [currentTab, setCurrentTab] = useState(activeTab);
 

@@ -163,7 +163,7 @@ export default function Index({ transactions, items, filters }) {
             const data = await response.json();
             setCalculatorData(data);
         } catch (error) {
-            console.error('Error loading calculator data:', error);
+            // Error loading calculator data
         }
     };
 
@@ -178,7 +178,7 @@ export default function Index({ transactions, items, filters }) {
             setAgingData(data);
             setAgingPagination(data.batches);
         } catch (error) {
-            console.error('Error loading aging data:', error);
+            // Error loading aging data
         }
     };
 
@@ -192,7 +192,7 @@ export default function Index({ transactions, items, filters }) {
             setLowStockData(data);
             setLowStockPagination(data);
         } catch (error) {
-            console.error('Error loading low stock data:', error);
+            // Error loading low stock data
         }
     };
 
@@ -206,7 +206,7 @@ export default function Index({ transactions, items, filters }) {
             setOutOfStockData(data);
             setOutOfStockPagination(data);
         } catch (error) {
-            console.error('Error loading out of stock data:', error);
+            // Error loading out of stock data
         }
     };
 
@@ -224,7 +224,7 @@ export default function Index({ transactions, items, filters }) {
             setCalculatorItems(data.data || []);
             setCalculatorPagination(data);
         } catch (error) {
-            console.error('Error loading calculator items:', error);
+            // Error loading calculator items
         }
     };
 
@@ -246,7 +246,7 @@ export default function Index({ transactions, items, filters }) {
             const data = await response.json();
             setCalculatorData(data);
         } catch (error) {
-            console.error('Error updating calculator data:', error);
+            // Error updating calculator data
             // Set default values when no items are selected
             setCalculatorData({
                 items: [],
@@ -302,12 +302,12 @@ export default function Index({ transactions, items, filters }) {
                 setShowSearchResultsOut(true);
             }
         } catch (error) {
-            console.error('Error searching items:', error);
+            // Error searching items
         }
     };
 
     const selectItem = (item, formType) => {
-        console.log('selectItem called:', item, formType);
+        // selectItem called
 
         if (formType === 'in') {
             setSelectedItemIn(item);
@@ -316,9 +316,9 @@ export default function Index({ transactions, items, filters }) {
             setSearchResultsIn([]);
             // Set the form data immediately
             stockInForm.setData('item_id', item.id);
-            console.log('Stock In - selectedItemIn set to:', item);
-            console.log('Stock In - searchTermIn set to:', `${item.name} (${item.item_id})`);
-            console.log('Stock In - form data set to:', stockInForm.data);
+            // Stock In - selectedItemIn set to
+            // Stock In - searchTermIn set to
+            // Stock In - form data set to
         } else {
             setSelectedItemOut(item);
             setSearchTermOut(`${item.name} (${item.item_id})`);
@@ -326,9 +326,9 @@ export default function Index({ transactions, items, filters }) {
             setSearchResultsOut([]);
             // Set the form data immediately
             stockOutForm.setData('item_id', item.id);
-            console.log('Stock Out - selectedItemOut set to:', item);
-            console.log('Stock Out - searchTermOut set to:', `${item.name} (${item.item_id})`);
-            console.log('Stock Out - form data set to:', stockOutForm.data);
+            // Stock Out - selectedItemOut set to
+            // Stock Out - searchTermOut set to
+            // Stock Out - form data set to
         }
     };
 
@@ -371,9 +371,9 @@ export default function Index({ transactions, items, filters }) {
     const handleStockIn = (e) => {
         e.preventDefault();
 
-        console.log('handleStockIn called');
-        console.log('selectedItemIn:', selectedItemIn);
-        console.log('stockInForm.data:', stockInForm.data);
+        // handleStockIn called
+        // selectedItemIn
+        // stockInForm.data
 
         if (!selectedItemIn) {
             toast.error('Please select an item');
@@ -388,7 +388,7 @@ export default function Index({ transactions, items, filters }) {
                 loadCalculatorData();
             },
             onError: (errors) => {
-                console.log('Stock in errors:', errors);
+                // Stock in errors
                 toast.error('Failed to record stock in');
             },
         });
@@ -397,9 +397,9 @@ export default function Index({ transactions, items, filters }) {
     const handleStockOut = (e) => {
         e.preventDefault();
 
-        console.log('handleStockOut called');
-        console.log('selectedItemOut:', selectedItemOut);
-        console.log('stockOutForm.data:', stockOutForm.data);
+        // handleStockOut called
+        // selectedItemOut
+        // stockOutForm.data
 
         if (!selectedItemOut) {
             toast.error('Please select an item');
@@ -423,7 +423,7 @@ export default function Index({ transactions, items, filters }) {
                 loadCalculatorData();
             },
             onError: (errors) => {
-                console.log('Stock out errors:', errors);
+                // Stock out errors
                 if (errors.quantity && errors.quantity.includes('Insufficient stock')) {
                     toast.error(errors.quantity);
                 } else {
