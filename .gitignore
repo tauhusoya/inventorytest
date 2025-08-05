@@ -1,4 +1,3 @@
-/.phpunit.cache
 /node_modules
 /public/build
 /public/hot
@@ -8,6 +7,7 @@
 .env
 .env.backup
 .env.production
+.phpunit.result.cache
 Homestead.json
 Homestead.yaml
 auth.json
@@ -16,3 +16,42 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+
+# Laravel specific
+/bootstrap/cache/*.php
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+/storage/logs/*
+/storage/app/public/*
+/public/storage
+
+# Production files
+deploy.sh
+deploy.bat
+test-docker.sh
+test-docker.bat
+*.log
+*.sql
+*.sqlite
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.temp
+*.cache

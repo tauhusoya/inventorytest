@@ -1,0 +1,82 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Documentation
+README.md
+CHANGELOG.md
+LICENSE
+*.md
+
+# Development files
+.env
+.env.*
+!.env.example
+.env.backup
+.env.production
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Laravel
+storage/logs/*
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/views/*
+storage/app/public/*
+bootstrap/cache/*.php
+
+# Testing
+tests/
+phpunit.xml
+.phpunit.result.cache
+
+# Docker
+Dockerfile
+docker-compose.yml
+docker/
+.dockerignore
+
+# Deployment
+deploy.sh
+deploy.bat
+railway.toml
+
+# Temporary files
+*.tmp
+*.temp
+*.cache
+*.log
+
+# Build artifacts
+public/build/
+public/hot/
+
+# Database
+*.sql
+*.sqlite
+*.sqlite3
+
+# Backup files
+*.bak
+*.backup 

@@ -1,134 +1,176 @@
 # Inventory Management System
 
-A modern Laravel-based inventory management system with React frontend, featuring user management, stock tracking, and comprehensive reporting.
+A modern inventory management system built with Laravel 10, React, and Inertia.js.
 
-## 🚀 Features
+## Features
 
-- **🔐 Authentication & Authorization**: Secure user management with role-based access
-- **📦 Inventory Management**: Complete item and stock tracking system
-- **📊 Reporting & Analytics**: Comprehensive dashboards and reports
-- **🔄 Stock Transactions**: Track stock movements and aging
-- **👥 User Management**: Admin panel for user administration
-- **📱 Modern UI**: Responsive design with React and Tailwind CSS
+- 📦 **Item Management**: Add, edit, and manage inventory items
+- 📊 **Stock Tracking**: Real-time stock levels and transactions
+- 👥 **User Management**: Multi-user system with role-based access
+- 📈 **Stock Aging**: Track item aging and expiration
+- 🔄 **Stock Operations**: Stock in/out with batch tracking
+- 📋 **Reports**: Export data and generate reports
+- 🔐 **Authentication**: Secure login and password management
 
-## 🛠️ Technology Stack
+## Production Deployment
 
-- **Backend**: Laravel 10, PHP 8.1+
-- **Frontend**: React 18, Inertia.js
-- **Styling**: Tailwind CSS
-- **Database**: MySQL
-- **Charts**: Chart.js, Nivo Charts
-- **Icons**: Lucide React
+### 🚀 Railway.app Deployment (Recommended)
 
-## 📋 Prerequisites
+The easiest way to deploy your application is using Railway.app with Docker:
 
+1. **Connect your repository to Railway**
+   - Go to [Railway Dashboard](https://railway.app/dashboard)
+   - Click "New Project" → "Deploy from GitHub repo"
+   - Select your repository
+
+2. **Add MySQL Database**
+   - In your Railway project, click "New" → "Database" → "MySQL"
+   - Note the database credentials
+
+3. **Configure Environment Variables**
+   - Set the required environment variables in Railway dashboard
+   - See `RAILWAY_DEPLOYMENT.md` for detailed instructions
+
+4. **Deploy**
+   - Railway will automatically build and deploy your application
+   - Your app will be available at the provided Railway URL
+
+For detailed Railway deployment instructions, see [RAILWAY_DEPLOYMENT.md](./RAILWAY_DEPLOYMENT.md)
+
+### 🐳 Docker Deployment
+
+You can also deploy using Docker:
+
+```bash
+# Build and run with Docker Compose
+docker-compose up -d
+
+# Or build the image manually
+docker build -t inventory-app .
+docker run -p 8000:80 inventory-app
+```
+
+### 🖥️ Traditional Server Deployment
+
+For traditional server deployment:
+
+**Prerequisites:**
 - PHP 8.1 or higher
+- MySQL 5.7 or higher
+- Node.js 18.0 or higher
 - Composer
-- Node.js 18+ and npm
-- MySQL database
+- Web server (Apache/Nginx)
 
-## 🚀 Installation
+### Quick Deployment
 
-1. **Clone the repository**
+#### Using Windows (PowerShell/Command Prompt):
+```bash
+deploy.bat
+```
+
+#### Using Linux/Mac:
+```bash
+chmod +x deploy.sh
+./deploy.sh
+```
+
+### Manual Deployment Steps
+
+1. **Install Dependencies**
    ```bash
-   git clone https://github.com/tauhusoya/inventory.git
-   cd inventory
-   ```
-
-2. **Install PHP dependencies**
-   ```bash
-   composer install
-   ```
-
-3. **Install Node.js dependencies**
-   ```bash
+   composer install --no-dev --optimize-autoloader
    npm install
+   npm run build
    ```
 
-4. **Environment setup**
+2. **Environment Setup**
    ```bash
    cp .env.example .env
    php artisan key:generate
    ```
 
-5. **Configure database**
-   - Update `.env` file with your database credentials
-   - Run migrations and seeders:
+3. **Database Setup**
    ```bash
-   php artisan migrate
-   php artisan db:seed
+   php artisan migrate --force
    ```
 
-6. **Build assets**
+4. **Production Optimization**
    ```bash
-   npm run dev
+   php artisan optimize
+   php artisan config:cache
+   php artisan route:cache
+   php artisan view:cache
    ```
 
-7. **Start development server**
+5. **Set Permissions**
    ```bash
-   php artisan serve
+   chmod -R 755 storage bootstrap/cache
+   chmod -R 755 public
    ```
 
-## 📁 Project Structure
+### Environment Configuration
 
+Update your `.env` file with production settings:
+
+```env
+APP_ENV=production
+APP_DEBUG=false
+APP_URL=https://your-domain.com
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=your_database
+DB_USERNAME=your_username
+DB_PASSWORD=your_password
+
+CACHE_DRIVER=file
+SESSION_DRIVER=file
+QUEUE_CONNECTION=sync
 ```
-inventory/
-├── app/
-│   ├── Http/Controllers/    # Controllers
-│   ├── Models/             # Eloquent models
-│   └── Services/           # Business logic
-├── resources/
-│   └── js/                # React components
-├── database/               # Migrations and seeders
-├── routes/                # Route definitions
-└── config/                # Configuration files
-```
 
-## 🎯 Key Features
+### Security Checklist
 
-### Authentication
-- User registration and login
-- Password reset functionality
-- Role-based access control
+- [ ] Set `APP_DEBUG=false`
+- [ ] Use strong database passwords
+- [ ] Enable HTTPS/SSL
+- [ ] Configure proper file permissions
+- [ ] Set up regular backups
+- [ ] Use environment variables for sensitive data
+- [ ] Disable Telescope in production
 
-### Inventory Management
-- Add, edit, and delete items
-- Track stock levels
-- Set reorder levels
-- SKU management
+### Performance Optimization
 
-### Stock Transactions
-- Stock in/out transactions
-- Transaction history
-- Stock aging tracking
-- Batch management
+- [ ] Enable OPcache
+- [ ] Configure Redis for caching (optional)
+- [ ] Set up CDN for static assets
+- [ ] Configure database indexing
+- [ ] Enable gzip compression
 
-### Dashboard
-- Real-time statistics
-- Low stock alerts
-- Total inventory value
-- Recent transactions
+### Monitoring
 
-### User Management
-- Admin panel for user management
-- User roles and permissions
-- Profile management
+- [ ] Set up error logging
+- [ ] Configure application monitoring
+- [ ] Set up database monitoring
+- [ ] Monitor server resources
 
-## 🧪 Testing
+## Development
 
-Run the test suite:
+### Local Setup
+
+1. Clone the repository
+2. Install dependencies: `composer install && npm install`
+3. Copy `.env.example` to `.env` and configure
+4. Run migrations: `php artisan migrate`
+5. Start development server: `php artisan serve`
+6. Build assets: `npm run dev`
+
+### Testing
+
 ```bash
 php artisan test
 ```
 
-## 📝 License
+## License
 
-This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-
-## 👤 Author
-
-**tauhusoya** - [GitHub](https://github.com/tauhusoya)
-
----
-
-**🎉 Happy coding!**
+This project is licensed under the MIT License.

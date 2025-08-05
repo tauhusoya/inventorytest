@@ -22,9 +22,26 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 
-// Health check route for Railway
+// Health check route for monitoring
 Route::get('/health', function () {
-    return response()->json(['status' => 'ok', 'timestamp' => now()]);
+    try {
+        // Check database connection
+        \DB::connection()->getPdo();
+        
+        return response()->json([
+            'status' => 'ok',
+            'timestamp' => now(),
+            'version' => '1.0.0',
+            'environment' => config('app.env'),
+            'database' => 'connected'
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'status' => 'error',
+            'timestamp' => now(),
+            'error' => 'Database connection failed'
+        ], 500);
+    }
 });
 
 /*
