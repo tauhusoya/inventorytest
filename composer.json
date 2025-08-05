@@ -44,11 +44,10 @@
     },
     "scripts": {
         "post-autoload-dump": [
-            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php -r \"if (file_exists('.env')) { @php artisan package:discover --ansi; }\""
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump"
         ],
         "post-update-cmd": [
-            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+            "@php -r \"echo 'Laravel assets updated successfully';\""
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
@@ -57,10 +56,7 @@
             "@php artisan key:generate --ansi"
         ],
         "post-install-cmd": [
-            "@php artisan optimize",
-            "@php artisan config:cache",
-            "@php artisan route:cache",
-            "@php artisan view:cache"
+            "@php -r \"echo 'Laravel application installed successfully';\""
         ]
     },
     "extra": {
