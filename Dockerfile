@@ -64,9 +64,6 @@ COPY docker/nginx.conf /etc/nginx/nginx.conf
 # Copy supervisor configuration
 COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-# Create storage symlink
-RUN php artisan storage:link
-
 # Optimize for production
 RUN php artisan optimize \
     && php artisan config:cache \
