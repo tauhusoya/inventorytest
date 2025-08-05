@@ -4,7 +4,7 @@ FROM php:8.1-fpm-alpine
 # Set working directory
 WORKDIR /var/www/html
 
-# Install system dependencies
+# Install system dependencies and PHP extensions in one layer
 RUN apk add --no-cache \
     git \
     curl \
@@ -20,10 +20,8 @@ RUN apk add --no-cache \
     freetype-dev \
     libjpeg-turbo-dev \
     libwebp-dev \
-    libzip-dev
-
-# Install PHP extensions with proper dependencies
-RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
+    libzip-dev \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
     && docker-php-ext-install -j$(nproc) \
         pdo_mysql \
         mbstring \
@@ -31,7 +29,8 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
         pcntl \
         bcmath \
         gd \
-        zip
+        zip \
+    && apk del --no-cache oniguruma-dev freetype-dev libjpeg-turbo-dev libwebp-dev libzip-dev
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
