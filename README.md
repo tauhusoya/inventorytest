@@ -12,151 +12,61 @@ A modern inventory management system built with Laravel 10, React, and Inertia.j
 - 📋 **Reports**: Export data and generate reports
 - 🔐 **Authentication**: Secure login and password management
 
-## Production Deployment
+## Installation
 
-### 🚀 Railway.app Deployment (Recommended)
+### Prerequisites
 
-The easiest way to deploy your application is using Railway.app with Docker:
-
-1. **Connect your repository to Railway**
-   - Go to [Railway Dashboard](https://railway.app/dashboard)
-   - Click "New Project" → "Deploy from GitHub repo"
-   - Select your repository
-
-2. **Add MySQL Database**
-   - In your Railway project, click "New" → "Database" → "MySQL"
-   - Note the database credentials
-
-3. **Configure Environment Variables**
-   - Set the required environment variables in Railway dashboard
-   - See `RAILWAY_DEPLOYMENT.md` for detailed instructions
-
-4. **Deploy**
-   - Railway will automatically build and deploy your application
-   - Your app will be available at the provided Railway URL
-
-For detailed Railway deployment instructions, see [RAILWAY_DEPLOYMENT.md](./RAILWAY_DEPLOYMENT.md)
-
-### 🐳 Docker Deployment
-
-You can also deploy using Docker:
-
-```bash
-# Build and run with Docker Compose
-docker-compose up -d
-
-# Or build the image manually
-docker build -t inventory-app .
-docker run -p 8000:80 inventory-app
-```
-
-### 🖥️ Traditional Server Deployment
-
-For traditional server deployment:
-
-**Prerequisites:**
 - PHP 8.1 or higher
 - MySQL 5.7 or higher
 - Node.js 18.0 or higher
 - Composer
 - Web server (Apache/Nginx)
 
-### Quick Deployment
+### Quick Setup
 
-#### Using Windows (PowerShell/Command Prompt):
-```bash
-deploy.bat
-```
-
-#### Using Linux/Mac:
-```bash
-chmod +x deploy.sh
-./deploy.sh
-```
-
-### Manual Deployment Steps
-
-1. **Install Dependencies**
+1. **Clone the repository**
    ```bash
-   composer install --no-dev --optimize-autoloader
-   npm install
-   npm run build
+   git clone https://github.com/tauhusoya/inventorytest.git
+   cd inventorytest
    ```
 
-2. **Environment Setup**
+2. **Install PHP dependencies**
+   ```bash
+   composer install
+   ```
+
+3. **Install Node.js dependencies**
+   ```bash
+   npm install
+   ```
+
+4. **Environment setup**
    ```bash
    cp .env.example .env
    php artisan key:generate
    ```
 
-3. **Database Setup**
+5. **Configure database**
+   - Update `.env` file with your database credentials
+   - Run migrations and seeders:
    ```bash
-   php artisan migrate --force
+   php artisan migrate
+   php artisan db:seed
    ```
 
-4. **Production Optimization**
+6. **Build assets**
    ```bash
-   php artisan optimize
-   php artisan config:cache
-   php artisan route:cache
-   php artisan view:cache
+   npm run dev
    ```
 
-5. **Set Permissions**
+7. **Start development server**
    ```bash
-   chmod -R 755 storage bootstrap/cache
-   chmod -R 755 public
+   php artisan serve
    ```
-
-### Environment Configuration
-
-Update your `.env` file with production settings:
-
-```env
-APP_ENV=production
-APP_DEBUG=false
-APP_URL=https://your-domain.com
-
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=your_database
-DB_USERNAME=your_username
-DB_PASSWORD=your_password
-
-CACHE_DRIVER=file
-SESSION_DRIVER=file
-QUEUE_CONNECTION=sync
-```
-
-### Security Checklist
-
-- [ ] Set `APP_DEBUG=false`
-- [ ] Use strong database passwords
-- [ ] Enable HTTPS/SSL
-- [ ] Configure proper file permissions
-- [ ] Set up regular backups
-- [ ] Use environment variables for sensitive data
-- [ ] Disable Telescope in production
-
-### Performance Optimization
-
-- [ ] Enable OPcache
-- [ ] Configure Redis for caching (optional)
-- [ ] Set up CDN for static assets
-- [ ] Configure database indexing
-- [ ] Enable gzip compression
-
-### Monitoring
-
-- [ ] Set up error logging
-- [ ] Configure application monitoring
-- [ ] Set up database monitoring
-- [ ] Monitor server resources
 
 ## Development
 
-### Local Setup
+### Local Development
 
 1. Clone the repository
 2. Install dependencies: `composer install && npm install`

@@ -26,13 +26,7 @@ yarn-error.log
 /storage/app/public/*
 /public/storage
 
-# Production files
-deploy.sh
-deploy.bat
-test-docker.sh
-test-docker.bat
-verify-docker.sh
-verify-docker.bat
+# Logs
 *.log
 *.sql
 *.sqlite
