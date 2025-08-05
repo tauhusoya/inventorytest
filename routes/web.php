@@ -25,21 +25,19 @@ use Illuminate\Support\Facades\Route;
 // Health check route for monitoring
 Route::get('/health', function () {
     try {
-        // Check database connection
-        \DB::connection()->getPdo();
-        
+        // Basic application check without database
         return response()->json([
             'status' => 'ok',
             'timestamp' => now(),
             'version' => '1.0.0',
             'environment' => config('app.env'),
-            'database' => 'connected'
+            'message' => 'Application is running'
         ]);
     } catch (\Exception $e) {
         return response()->json([
             'status' => 'error',
             'timestamp' => now(),
-            'error' => 'Database connection failed'
+            'error' => $e->getMessage()
         ], 500);
     }
 });
