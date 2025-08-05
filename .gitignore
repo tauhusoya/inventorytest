@@ -31,6 +31,8 @@ deploy.sh
 deploy.bat
 test-docker.sh
 test-docker.bat
+verify-docker.sh
+verify-docker.bat
 *.log
 *.sql
 *.sqlite

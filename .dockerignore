@@ -54,12 +54,13 @@ phpunit.xml
 # Docker
 Dockerfile
 docker-compose.yml
-docker/
 .dockerignore
 
 # Deployment
 deploy.sh
 deploy.bat
+test-docker.sh
+test-docker.bat
 railway.toml
 
 # Temporary files
