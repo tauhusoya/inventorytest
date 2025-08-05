@@ -44,11 +44,11 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction
 # Copy package files
 COPY package.json package-lock.json ./
 
-# Install Node.js dependencies
-RUN npm ci --only=production
-
 # Copy application files
 COPY . .
+
+# Install Node.js dependencies (including dev dependencies for build)
+RUN npm ci
 
 # Build frontend assets
 RUN npm run build
